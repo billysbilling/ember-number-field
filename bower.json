@@ -1,0 +1,19 @@
+{
+  "name": "ember-number-field",
+  "version": "0.1.0",
+  "homepage": "https://github.com/billysbilling/ember-number-field",
+  "main": "src/js/number-field.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": "billysbilling/bower-ember#master",
+    "numeral": "1.5.0",
+    "ember-text-field": "billysbilling/ember-text-field#master"
+  }
+}
