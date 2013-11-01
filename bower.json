@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "homepage": "https://github.com/billysbilling/ember-number-field",
   "main": "src/js/number-field.js",
+  "billy-builder": {
+    "include": [
+      "src/locales"
+    ]
+  },
   "license": "MIT",
   "ignore": [
     "**/.*",
