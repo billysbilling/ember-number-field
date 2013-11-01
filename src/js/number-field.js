@@ -1,4 +1,6 @@
-var numeral = require('numeral');
+var numeral = require('numeral'),
+    i18n = require('i18n').module('ember_number_field', require.resolve('../locales')),
+    t = i18n.t;
 
 module.exports = require('ember-text-field').extend({
 
@@ -35,7 +37,7 @@ module.exports = require('ember-text-field').extend({
     validateInputValue: function(inputValue) {
         if (!Em.isEmpty(inputValue)) {
             if (!this.isValidNumberString(inputValue)) {
-                throw new UserError(t('ui.fields.numberfield.invalid_number'));
+                throw new UserError(t('invalid_number'));
             }
             var value = this.unformatInputValue(inputValue),
                 min = this.get('min'),
@@ -44,18 +46,18 @@ module.exports = require('ember-text-field').extend({
                 maxIncluded = this.get('maxIncluded');
             if (!Em.isEmpty(min)) {
                 if (minIncluded && value < min) {
-                    throw new UserError(t('ui.fields.numberfield.must_be_greater_equal', {number: this.formatInputValue(min)}));
+                    throw new UserError(t('must_be_greater_equal', {number: this.formatInputValue(min)}));
                 }
                 if (!minIncluded && value <= min) {
-                    throw new UserError(t('ui.fields.numberfield.must_be_greater', {number: this.formatInputValue(min)}));
+                    throw new UserError(t('must_be_greater', {number: this.formatInputValue(min)}));
                 }
             }
             if (!Em.isEmpty(max)) {
                 if (maxIncluded && value > max) {
-                    throw new UserError(t('ui.fields.numberfield.must_be_less_equal', {number: this.formatInputValue(max)}));
+                    throw new UserError(t('must_be_less_equal', {number: this.formatInputValue(max)}));
                 }
                 if (!maxIncluded && value >= max) {
-                    throw new UserError(t('ui.fields.numberfield.must_be_less', {number: this.formatInputValue(min)}));
+                    throw new UserError(t('must_be_less', {number: this.formatInputValue(min)}));
                 }
             }
         }
@@ -64,3 +66,5 @@ module.exports = require('ember-text-field').extend({
         return value.match(/^-?[\d,]+(\.\d+)?$/);
     }
 });
+
+module.exports.lang = i18n.lang;

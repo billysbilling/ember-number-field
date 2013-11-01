@@ -1,0 +1,7 @@
+{
+    "invalid_number": "Ugyldigt tal.",
+    "must_be_greater": "Skal være større end {{number}}.",
+    "must_be_greater_equal": "Skal være større end, eller lig med {{number}}.",
+    "must_be_less": "Skal være mindre end {{number}}.",
+    "must_be_less_equal": "Skal være mindre end, eller lig med {{number}}.",
+}

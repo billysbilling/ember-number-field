@@ -13,7 +13,8 @@
   ],
   "dependencies": {
     "ember": "billysbilling/bower-ember#master",
-    "numeral": "1.5.0",
-    "ember-text-field": "billysbilling/ember-text-field#master"
+    "ember-text-field": "billysbilling/ember-text-field#master",
+    "i18n": "billysbilling/i18n#master",
+    "numeral": "1.5.0"
   }
 }
