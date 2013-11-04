@@ -7,7 +7,7 @@ module.exports = require('ember-text-field').extend({
     align: 'right',
     autocomplete: 'off',
 
-    inputType: 'number',
+    inputmode: 'numeric',
     
     min: null,
     minIncluded: true,
