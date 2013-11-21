@@ -1,6 +1,6 @@
 var numeral = require('numeral'),
-    i18n = require('i18n').module('ember_number_field', require.resolve('../locales')),
-    t = i18n.t;
+    i18nContext = require('i18n-context')('ember_number_field', require.resolve('../locales')),
+    t = i18nContext.t;
 
 module.exports = require('ember-text-field').extend({
 
@@ -67,4 +67,9 @@ module.exports = require('ember-text-field').extend({
     }
 });
 
-module.exports.lang = i18n.lang;
+module.exports.locale = i18nContext.locale;
+
+module.exports.lang = function() {
+    console.warn('.lang() is deprecated. Use .locale() instead');
+    return i18nContext.locale.apply(null, arguments);
+};
