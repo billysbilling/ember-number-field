@@ -1,4 +1,5 @@
 var numeral = require('numeral'),
+    numeralLanguages = require('numeral-languages'),
     i18nContext = require('i18n-context')('ember_number_field', require.resolve('../locales')),
     t = i18nContext.t;
 
@@ -18,11 +19,11 @@ module.exports = require('ember-text-field').extend({
         this._super();
         var min = this.get('min'),
             max = this.get('max');
-        if (min && !(typeof min == 'number')) {
-            this.set('min', 1*min);
+        if (min && typeof(min) !== 'number') {
+            this.set('min', Number(min));
         }
-        if (max && !(typeof max == 'number')) {
-            this.set('max', 1*max);
+        if (max && typeof(max) !== 'number') {
+            this.set('max', Number(max));
         }
     },
     
@@ -63,7 +64,15 @@ module.exports = require('ember-text-field').extend({
         }
     },
     isValidNumberString: function(value) {
-        return value.match(/^-?[\d,]+(\.\d+)?$/);
+        var lang = numeralLanguages[numeral.language()] || numeralLanguages.en,
+            thousandsDelimiter = lang.delimiters && lang.delimiters.thousands ? lang.delimiters.thousands : ',',
+            decimalDelimiter = lang.delimiters && lang.delimiters.decimal ? lang.delimiters.decimal : '.',
+            re;
+        re = new RegExp('\\' + thousandsDelimiter, 'g');
+        value = value.replace(re, '');
+        re = new RegExp('\\' + decimalDelimiter, 'g');
+        value = value.replace(re, '.');
+        return !isNaN(value);
     }
 });
 
